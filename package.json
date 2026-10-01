@@ -17,11 +17,15 @@
     "node": ">=22.13.0"
   },
   "dependencies": {
-    "@mastra/core": "1.63.2",
+    "@ai-sdk/google": "^4.0.62",
+    "@ai-sdk/openai": "^4.0.73",
+    "@mastra/core": "^1.63.2",
     "@mastra/duckdb": "1.6.3",
     "@mastra/libsql": "1.22.2",
     "@mastra/memory": "1.28.1",
     "@mastra/observability": "1.17.4",
+    "ai": "^7.0.91",
+    "cheerio": "^1.2.0",
     "zod": "^4.4.3"
   },
   "devDependencies": {
