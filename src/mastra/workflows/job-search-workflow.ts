@@ -8,24 +8,10 @@ import { fetchJobPageTool } from '../tools/fetch-job-page';
    Schemas
 ========================= */
 
-const jobSchema = z.object({
-  title: z.string(),
-  company: z.string(),
-  location: z.string(),
-  experience: z.string(),
-  skills: z.array(z.string()),
-  description: z.string(),
-  url: z.string(),
-});
-
 const searchResultSchema = z.object({
   jobs: z.array(
     z.object({
       title: z.string(),
-      company: z.string(),
-      location: z.string(),
-      experience: z.string(),
-      skills: z.array(z.string()),
       description: z.string(),
       url: z.string(),
     }),
@@ -33,6 +19,8 @@ const searchResultSchema = z.object({
 });
 
 const fetchedJobSchema = z.object({
+  title: z.string(),
+  searchDescription: z.string(),
   url: z.string(),
   pageText: z.string(),
 });
@@ -93,6 +81,8 @@ const fetchStep = createStep({
           });
 
           return {
+            title: job.title,
+            searchDescription: job.description,
             url: result.url,
             pageText: result.pageText,
           };
@@ -108,7 +98,11 @@ const fetchStep = createStep({
     );
 
     const jobs = results.filter(
-      (job): job is {
+      (
+        job,
+      ): job is {
+        title: string;
+        searchDescription: string;
         url: string;
         pageText: string;
       } => job !== null,
